@@ -71,12 +71,32 @@ def calculate_skill_set_match_percentage(jobDescription, pathToResume):
           f"following keywords: {job_description_keywords}")
 
 
-job_description = "We are looking for a skilled software developer to join our team. " \
-                  "The ideal candidate will have experience in Python, Django, and AWS." \
-                  " We value strong problem-solving skills and a desire to learn and grow " \
-                  "with the company."
-pathToResume = "AlirezaRahnamaResume.doc"
+def remove_stop_words():
 
-# print out the result
-calculate_skill_set_match_percentage(job_description, pathToResume)
+    nltk.download('punkt')
+    nltk.download('stopwords')
+
+    # Define your text
+    text = "This is an example of text that contains some stop words"
+
+    # Tokenize the text into words
+    words = nltk.word_tokenize(text)
+
+    # Remove stop words
+    stop_words = set(stopwords.words('english'))
+    filtered_words = [word for word in words if word.lower() not in stop_words]
+
+    return filtered_words
+
+
+if __name__ == "__main__":
+
+    job_description = "We are looking for a skilled software developer to join our team. " \
+                      "The ideal candidate will have experience in Python, Django, and AWS." \
+                      " We value strong problem-solving skills and a desire to learn and grow " \
+                      "with the company."
+    pathToResume = "AlirezaRahnamaResume.doc"
+
+    # print out the result
+    calculate_skill_set_match_percentage(job_description, pathToResume)
 
